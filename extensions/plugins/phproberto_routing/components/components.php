@@ -12,7 +12,7 @@ defined('_JEXEC') || die;
 JLoader::import('phproberto_routing.library');
 
 use Joomla\CMS\Factory;
-use Joomla\CMS\Plugin\CMSPlugin;
+use Phproberto\Joomla\Routing\BasePlugin;
 use Phproberto\Joomla\Routing\FolderPriorityQueueInterface;
 
 /**
@@ -20,7 +20,7 @@ use Phproberto\Joomla\Routing\FolderPriorityQueueInterface;
  *
  * @since  1.0.0
  */
-class PlgPhproberto_RoutingComponents extends CMSPlugin
+class PlgPhproberto_RoutingComponents extends BasePlugin
 {
 	/**
 	 * Triggered before the router is initialised.

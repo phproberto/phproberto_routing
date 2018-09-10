@@ -12,18 +12,9 @@ defined('_JEXEC') or die;
 JLoader::import('phproberto_routing.library');
 
 use Joomla\CMS\Factory;
-use Joomla\CMS\Uri\Uri;
-use Phproberto\Joomla\Routing\Router;
 use Phproberto\Joomla\Routing\BasePlugin;
-use Symfony\Component\Config\FileLocator;
-use Joomla\CMS\Application\CMSApplication;
 use Phproberto\Joomla\Routing\RouterFactory;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\RequestContext;
-use Phproberto\Joomla\Routing\FolderPriorityQueue;
-use Symfony\Component\Routing\Loader\YamlFileLoader;
-use Phproberto\Joomla\Routing\MultipleYamlFileLoader;
-use Phproberto\Joomla\Routing\FolderPriorityQueueInterface;
 
 /**
  * Routing processor.

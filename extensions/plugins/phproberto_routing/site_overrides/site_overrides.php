@@ -12,8 +12,7 @@ defined('_JEXEC') || die;
 JLoader::import('phproberto_routing.library');
 
 use Joomla\CMS\Factory;
-use Joomla\CMS\Plugin\CMSPlugin;
-use Symfony\Component\Routing\Route;
+use Phproberto\Joomla\Routing\BasePlugin;
 use Phproberto\Joomla\Routing\FolderPriorityQueueInterface;
 
 /**
@@ -21,7 +20,7 @@ use Phproberto\Joomla\Routing\FolderPriorityQueueInterface;
  *
  * @since  1.0.0
  */
-class PlgPhproberto_RoutingSite_Overrides extends CMSPlugin
+class PlgPhproberto_RoutingSite_Overrides extends BasePlugin
 {
 	/**
 	 * Triggered before the router is initialised.
@@ -41,16 +40,5 @@ class PlgPhproberto_RoutingSite_Overrides extends CMSPlugin
 			JPATH_SITE . '/routes/' . Factory::getLanguage()->getTag(),
 			FolderPriorityQueueInterface::PRIORITY_USER_LANGUAGE_OVERRIDE
 		);
-	}
-
-	public function onPhprobertoRoutingSearchUrl($router, &$url)
-	{
-		if (substr_count($url, 'phproberto'))
-		{
-			return [
-				'_redirect' => 'com_content.miarticulo',
-				'_route' => 'phproberto.home'
-			];
-		}
 	}
 }

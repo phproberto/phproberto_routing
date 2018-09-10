@@ -11,21 +11,19 @@ defined('_JEXEC') or die;
 
 JLoader::import('phproberto_routing.library');
 
-use Joomla\CMS\Application\CMSApplication;
 use Joomla\CMS\Factory;
-use Joomla\CMS\Plugin\CMSPlugin;
-use Phproberto\Joomla\Routing\Router;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Config\Loader\LoaderInterface;
-use Symfony\Component\HttpFoundation\Request;
+use Phproberto\Joomla\Routing\Router;
+use Phproberto\Joomla\Routing\BasePlugin;
 use Symfony\Component\Routing\RequestContext;
+use Symfony\Component\Config\Loader\LoaderInterface;
 
 /**
  * Enable/Disable debug for routes.
  *
  * @since  1.0.0
  */
-class PlgPhproberto_RoutingDebug extends CMSPlugin
+class PlgPhproberto_RoutingDebug extends BasePlugin
 {
 	/**
 	 * Status inherited.
@@ -51,11 +49,11 @@ class PlgPhproberto_RoutingDebug extends CMSPlugin
 	/**
 	 * Triggered before the router is initialised.
 	 *
-	 * @param   Router           $router   [description]
-	 * @param   LoaderInterface  $loader   [description]
-	 * @param   array            $options  [description]
-	 * @param   RequestContext   $context  [description]
-	 * @param   LoggerInterface  $logger   [description]
+	 * @param   Router           $router   Active router instance
+	 * @param   LoaderInterface  $loader   A loader instance
+	 * @param   array            $options  Extra optiojns
+	 * @param   RequestContext   $context  Request context
+	 * @param   LoggerInterface  $logger   A logger instance
 	 *
 	 * @return  void
 	 */

@@ -1,0 +1,10 @@
+{
+	"libraries" : ["phproberto_routing"],
+	"packages"  : ["phproberto_routing"],
+	"plugins"   : {
+		"phproberto_routing": ["cache", "components", 
+			"debug", "site_overrides"
+		],
+		"system": ["phproberto_routing"]
+	}
+}

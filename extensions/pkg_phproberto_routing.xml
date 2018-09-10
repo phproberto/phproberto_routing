@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="package" version="3.6" method="upgrade">
+	<name>PKG_PHPROBERTO_ROUTING</name>
+	<creationDate>September 2018</creationDate>
+	<author>@phproberto</author>
+	<authorEmail>roberto@phproberto.com</authorEmail>
+	<authorUrl>www.phproberto.com</authorUrl>
+	<copyright>Copyright (C) 2018 Roberto Segura López. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<packager>@phproberto</packager>
+	<packagename>phproberto_routing</packagename>
+	<packagerurl>https://github.com/phproberto/phproberto-routing</packagerurl>
+	<version>0.0.1</version>
+	<description>PKG_PHPROBERTO_ROUTING_XML_DESCRIPTION</description>
+	<scriptfile>install.php</scriptfile>
+
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.pkg_phproberto_routing.sys.ini</language>
+	</languages>
+
+	<files>
+		<file type="library" id="phproberto_routing">libraries/phproberto_routing</file>
+
+		<!-- Plugins: phproberto_routing -->
+		<file type="plugin" id="cache" group="phproberto_routing" enabled="true">plugins/phproberto_routing/cache</file>
+		<file type="plugin" id="debug" group="phproberto_routing" enabled="true">plugins/phproberto_routing/debug</file>
+		<file type="plugin" id="components" group="phproberto_routing" enabled="true">plugins/phproberto_routing/components</file>
+		<file type="plugin" id="site_overrides" group="phproberto_routing" enabled="true">plugins/phproberto_routing/site_overrides</file>
+
+		<!-- Plugins: system -->
+		<file type="plugin" id="phproberto_routing" group="system" enabled="true">plugins/system/phproberto_routing</file>
+	</files>
+</extension>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" client="site" type="plugin" group="phproberto_routing" method="upgrade">
+	<name>PLG_PHPROBERTO_ROUTING_SITE_OVERRIDES</name>
+	<version>1.0.0</version>
+	<creationDate>September 2018</creationDate>
+	<author>@phproberto</author>
+	<authorEmail>roberto@phproberto.com</authorEmail>
+	<authorUrl>www.phproberto.com</authorUrl>
+	<copyright>Copyright (C) 2018 Roberto Segura López. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<description>PLG_PHPROBERTO_ROUTING_SITE_OVERRIDES_DESC</description>
+	<files>
+		<folder>language</folder>
+		<filename plugin="site_overrides">site_overrides.php</filename>
+		<filename>site_overrides.xml</filename>
+	</files>
+</extension>

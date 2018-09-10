@@ -11,23 +11,15 @@ namespace Phproberto\Joomla\Routing;
 
 defined('_JEXEC') || die;
 
-use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
 use Psr\Log\LoggerInterface;
 use Joomla\CMS\Router\SiteRouter;
-use Joomla\CMS\Plugin\PluginHelper;
-use Symfony\Component\Config\FileLocator;
-use Joomla\CMS\Application\CMSApplication;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RequestContext;
 use Phproberto\Joomla\Routing\Traits\HasEvents;
-use Symfony\Component\Routing\Matcher\UrlMatcher;
-use Phproberto\Joomla\Routing\FolderPriorityQueue;
 use Symfony\Component\Routing\Router as BaseRouter;
 use Symfony\Component\Config\Loader\LoaderInterface;
-use Symfony\Component\Routing\Loader\YamlFileLoader;
-use Phproberto\Joomla\Routing\MultipleYamlFileLoader;
 use Symfony\Component\Routing\Generator\UrlGenerator;
+use Symfony\Component\Routing\Matcher\UrlMatcherInterface;
 
 /**
  * Router.
@@ -48,20 +40,17 @@ final class Router extends BaseRouter
 	/**
 	 * Constructor.
 	 *
-	 * @param   array            $options  An array of options
-	 * @param   RequestContext   $context  The context
-	 * @param   LoggerInterface  $logger   A logger instance
+	 * @param   LoaderInterface  $loader    A LoaderInterface instance
+	 * @param   mixed            $resource  The main resource to load
+	 * @param   array            $options   An array of options
+	 * @param   RequestContext   $context   The context
+	 * @param   LoggerInterface  $logger    A logger instance
 	 */
-	public function __construct(array $options = [], RequestContext $context = null, LoggerInterface $logger = null)
+	public function __construct(LoaderInterface $loader, $resource,
+		array $options = [], RequestContext $context = null,
+		LoggerInterface $logger = null
+	)
 	{
-		$context = $context ?: new RequestContext(Uri::root(true));
-
-		$loader = new MultipleYamlFileLoader(
-			new FileLocator(
-				FolderPriorityQueue::instance()->toArray()
-			)
-		);
-
 		$this->triggerEvent('onPhprobertoRoutingBeforeLoadRouter', [&$loader, &$options, &$context, &$logger]);
 
 		parent::__construct($loader, 'routes.yml', $options, $context, $logger);
@@ -118,9 +107,17 @@ final class Router extends BaseRouter
 	}
 
 	/**
-	 * [match description]
+	 * Tries to match a URL path with a set of routes.
 	 *
-	 * @return  [type]  [description]
+	 * If the matcher can not find information, it must throw one of the exceptions documented
+	 * below.
+	 *
+	 * @param   string  $pathinfo  The path info to be parsed (raw format, i.e. not urldecoded)
+	 *
+	 * @return  array  An array of parameters
+	 *
+	 * @throws  ResourceNotFoundException If the resource could not be found
+	 * @throws  MethodNotAllowedException If the resource was found but the request method is not allowed
 	 */
 	public function match($pathinfo)
 	{

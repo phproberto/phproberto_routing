@@ -17,6 +17,7 @@ use Phproberto\Joomla\Routing\Router;
 use Phproberto\Joomla\Routing\BasePlugin;
 use Symfony\Component\Config\FileLocator;
 use Joomla\CMS\Application\CMSApplication;
+use Phproberto\Joomla\Routing\RouterFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RequestContext;
 use Phproberto\Joomla\Routing\FolderPriorityQueue;
@@ -42,7 +43,7 @@ class PlgSystemPhproberto_Routing extends BasePlugin
 	 */
 	public function __construct(&$subject, $config = array())
 	{
-		$this->router = new Router;
+		$this->router = RouterFactory::getRouter();
 
 		parent::__construct($subject, $config);
 	}
